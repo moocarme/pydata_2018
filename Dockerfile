@@ -38,6 +38,7 @@ RUN mkdir /home/$NB_USER/pydata_2018 && \
     fix-permissions /home/$NB_USER
 
 COPY spend_model_distribute.ipynb pydata_2018/
+COPY spend_data_distribute.csv pydata_2018/
 
 # Install Python 3 packages
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
@@ -74,8 +75,8 @@ RUN conda install --quiet --yes \
     # Activate ipywidgets extension in the environment that runs the notebook server
     jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     # Also activate ipywidgets extension for JupyterLab
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.37.0 && \
-    jupyter labextension install jupyterlab_bokeh@^0.6.0 && \
+    #jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.37.0 && \
+    #jupyter labextension install jupyterlab_bokeh@^0.6.0 && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
     rm -rf /home/$NB_USER/.cache/yarn && \
