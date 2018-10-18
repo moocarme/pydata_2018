@@ -25,5 +25,25 @@ docker push <tag name>
 
 ## To Run
 ```
-docker run -p 8888:8888 moocarme/pydata0.1
+docker run -p 8888:8888 moocarme/pydata1.0
+```
+
+
+## Setting up on an EC2 instance
+
+- Start an ec2 instance
+- Update and install docker
+```
+sudo yum update -y
+sudo yum install -y docker
+```
+
+- Start docker daemon
+```
+sudo service docker start
+```
+
+- Run image
+```
+sudo docker run -p 8888:8888 moocarme/pydata1.0
 ```

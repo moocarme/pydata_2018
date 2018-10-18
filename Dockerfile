@@ -7,12 +7,12 @@ LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 USER root
 
 # Install all OS dependencies for fully functional notebook server
-RUN apt-get update && apt-get install -yq --no-install-recommends \
+RUN apt-get install -yq --no-install-recommends \
     build-essential \
-    emacs \
+    # emacs \
     git \
     # inkscape \
-    jed \
+    # jed \
     libsm6 \
     libxext-dev \
     libxrender1 \
@@ -37,8 +37,8 @@ USER $NB_UID
 RUN mkdir /home/$NB_USER/pydata_2018 && \
     fix-permissions /home/$NB_USER
 
-COPY spend_model_distribute.ipynb pydata_2018/
-COPY spend_data_distribute.csv pydata_2018/
+COPY bayes_spend_tutorial.ipynb pydata_2018/
+COPY spend_data_distribute_short.csv pydata_2018/
 
 # Install Python 3 packages
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
@@ -47,29 +47,29 @@ RUN conda install --quiet --yes \
     'conda-forge::blas=*=openblas' \
     'ipywidgets=7.2*' \
     'pandas=0.23*' \
-    'numexpr=2.6*' \
+    # 'numexpr=2.6*' \
     'matplotlib=2.2*' \
     'scipy=1.1*' \
     'seaborn=0.9*' \
     'scikit-learn=0.19*' \
     # 'scikit-image=0.14*' \
     # 'sympy=1.1*' \
-    'cython=0.28*' \
+    # 'cython=0.28*' \
     # 'patsy=0.5*' \
-    'statsmodels=0.9*' \
+    # 'statsmodels=0.9*' \
     # 'cloudpickle=0.5*' \
     # 'dill=0.2*' \
-    'numba=0.38*' \
+    # 'numba=0.38*' \
     # 'bokeh=0.12*' \
     # 'sqlalchemy=1.2*' \
     # 'hdf5=1.10*' \
     # 'h5py=2.7*' \
     # 'vincent=0.4.*' \
     # 'beautifulsoup4=4.6.*' \
-    'protobuf=3.*' \
+    # 'protobuf=3.*' \
     'pymc3=3.*' \
-    'theano=1.*' \
-    'xlrd'  && \
+    'theano=1.*' && \
+    # 'xlrd'  && \
     conda remove --quiet --yes --force qt pyqt && \
     conda clean -tipsy && \
     # Activate ipywidgets extension in the environment that runs the notebook server
